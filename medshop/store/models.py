@@ -17,9 +17,19 @@ class Product(models.Model):
     name = models.CharField(max_length=150, null=True)
     price = models.FloatField()
     description = models.CharField(max_length=500, null=True)
+    image = models.ImageField(null=True, blank=True)
 
     def __str__(self):
         return self.name
+    #function to fix image error when epmty 
+    @property
+    def imageURL(self):
+        try:
+            url = self.image.url
+        except:
+            url = ''
+        return url
+
 
 class Order(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True, blank=True)
