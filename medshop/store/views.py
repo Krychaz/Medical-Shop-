@@ -5,8 +5,18 @@ import json
 
 
 def store(request):
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        items = order.itemsorder_set.all()
+        itemsInCart = order.getCartItems
+    else:
+        order = {'getCartTotal':0, 'getCartItems':0}
+        items = []
+        itemsInCart = order['getCartItems']
+
     products = Product.objects.all()
-    context = {'products' :products}
+    context = {'products' :products, 'itemsInCart': itemsInCart}
     return render(request, 'store/store.html', context)
 
 
