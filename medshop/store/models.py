@@ -52,6 +52,7 @@ class Order(models.Model):
         total = sum([item.quantity for item in ordered])
         return total 
 
+
 class ItemsOrder(models.Model):
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True, blank=True)
     order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True, blank=True)

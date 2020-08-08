@@ -47,8 +47,27 @@
     <br />
     <div class="box-element hidden" id="payment-info">
       <small>Paypal Options</small>
+      <button id="makePayment">Pay</button>
     </div>
   </div>
 </div>
 
+<script type="text/javascript">
+  var form = document.getElementById('form')
+  form.addEventListener('submit', function(e){
+    e.preventDefault()
+    console.log('submited')
+    document.getElementById('form-button').classList.add('hidden')
+    document.getElementById('payment-info').classList.remove('hidden')
+  })
+  document.getElementById('makePayment').addEventListener('click', function(e){
+    submitFormData()
+  })
+  
+  function submitFormData(){
+    console.log('Payment clicked')
+
+  }
+
+</script>
 {% endblock content %}
