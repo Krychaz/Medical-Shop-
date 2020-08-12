@@ -38,7 +38,7 @@ class Order(models.Model):
     transaction_id = models.CharField(max_length=100, null=True)
 
     def __str__(self):
-        return self.transaction_id
+        return str(self.id)
  
     @property
     def getCartTotal(self):
@@ -51,6 +51,12 @@ class Order(models.Model):
         ordered = self.itemsorder_set.all()
         total = sum([item.quantity for item in ordered])
         return total 
+
+    @property
+    def shipping(self):
+        shipping = False
+        itemsorder = self.itemsorder_set.all()
+        return shipping 
 
 
 class ItemsOrder(models.Model):
@@ -67,11 +73,11 @@ class ItemsOrder(models.Model):
 class Shipping(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)
     order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True)
-    address = models.CharField(max_length=150, null=False)
-    city = models.CharField(max_length=150, null=False)
-    state = models.CharField(max_length=150, null=False)
-    zipcode = models.CharField(max_length=150, null=False)
-    date_added = models.CharField(max_length=150, null=False)
+    address = models.CharField(max_length=150, null=True)
+    city = models.CharField(max_length=150, null=True)
+    state = models.CharField(max_length=150, null=True)
+    zipcode = models.CharField(max_length=150, null=True)
+    date_added = models.CharField(max_length=150, null=True)
 
     def __str__(self):
         return self.address
