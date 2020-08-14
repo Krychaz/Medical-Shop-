@@ -54,7 +54,7 @@ class Order(models.Model):
 
     @property
     def shipping(self):
-        shipping = False
+        shipping = True
         itemsorder = self.itemsorder_set.all()
         return shipping 
 
