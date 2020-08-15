@@ -12,7 +12,7 @@
 				<table class="table">
 					<tr>
 						<th><h5>Items: <strong>{{order.getCartItems}}</strong></h5></th>
-						<th><h5>Total:<strong> ${{order.getCartTotal|floatformat:2}}</strong></h5></th>
+						<th><h5>Total:<strong> €{{order.getCartTotal|floatformat:2}}</strong></h5></th>
 						<th>
 							<a  style="float:right; margin:5px;" class="btn btn-success" href="{% url 'checkout' %}">Checkout</a>
 						</th>
@@ -33,7 +33,7 @@
 				<div class="cart-row">
 					<div style="flex:2"><img class="row-image" src="{{item.product.imageURL}}"></div>
 					<div style="flex:2"><p>{{item.product.name}}</p></div>
-					<div style="flex:1"><p>{{item.product.price|floatformat:2}}</p></div>
+					<div style="flex:1"><p>€{{item.product.price|floatformat:2}}</p></div>
 					<div style="flex:1">
 						<p class="quantity">{{item.quantity}}</p>
 						<div class="quantity">
@@ -42,7 +42,7 @@
 							<img data-product="{{item.product.id}}" data-action="remove" class="chg-quantity update-cart" src="{% static  'images/arrow-down.png' %}">
 						</div>
 					</div>
-					<div style="flex:1"><p>${{item.calcTotal |floatformat:2}}</p></div>
+					<div style="flex:1"><p>€{{item.calcTotal |floatformat:2}}</p></div>
 				</div>
         {% endfor %}
 			</div>
