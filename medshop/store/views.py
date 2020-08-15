@@ -33,7 +33,10 @@ def cart(request):
         items = []
         order = {'getCartTotal':0, 'getCartItems':0, 'shipping': False}
         cartItems = order['getCartItems']
-    context = {'items':items, 'order':order}
+
+        for i in cart:
+            cartItems += cart[i]["quantity"]
+    context = {'items':items, 'order':order,}
     return render(request, 'store/cart.html', context)
 
 

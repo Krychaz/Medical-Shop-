@@ -9,14 +9,19 @@ for (i = 0; i < updateBtn.length; i++){
         var action = this.dataset.action
         console.log('productId:', productId, 'Action', action )
 
-        console.log('User:', user)
-        if(user === 'AnonUser'){
-            console.log('User not verified')
+        console.log('USER:', user)
+        if(user == 'AnonymousUser'){
+            addCookieItem(productId, action)
         }else
         {
             updateUserOrder(productId, action)
         }
   })
+}
+
+function addCookieItem(productId, action){
+  console.log("User SUCCESS")
+ 
 }
 
 function updateUserOrder(productId, action){
